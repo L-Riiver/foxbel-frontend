@@ -29,7 +29,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ onTrackSelect }) => {
   }, [query]);
 
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
+    <div>
       <h1>Search Results for "{query}"</h1>
 
       {error && <p style={{ color: "red" }}>{error}</p>}

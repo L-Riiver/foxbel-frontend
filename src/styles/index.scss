@@ -1,0 +1,60 @@
+
+@use 'variables' as *;
+
+* {
+  box-sizing: border-box;
+  font-family: $font-family-base;  
+}
+
+a {
+  font-weight: 500;
+  color: $primary-color;  
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: $secondary-color;  
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-height: 100vh;
+  background-color: $background-color;  
+} 
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+.offscreen{
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  width: 1px;
+  height: 1px;
+  white-space: nowrap;
+}
+#root{
+  min-height: 100vh;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  a:hover {
+    color: $secondary-color;  // Cambiando el color al usar light mode
+  }
+
+  button {
+    background-color: $background-color;  // Usando el color de fondo para el modo claro
+  }
+}

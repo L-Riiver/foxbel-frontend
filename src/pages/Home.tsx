@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "../styles/GlobalStyles";
 
 interface HomeProps {
   onTrackSelect: (track: { title: string; artist: string; album: string; preview: string }) => void;

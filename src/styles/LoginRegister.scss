@@ -1,0 +1,100 @@
+
+@use 'variables' as *;
+.modal-overlay {
+  display: flex;
+  position: fixed;
+  z-index: 50;
+  background-color: #000a;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  
+  .modal-content {
+    background: white;
+    display: flex;
+    flex-direction: column;
+    width: clamp(200px, 80%, 500px);
+    margin: auto;
+    padding: 1rem;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: center;
+
+      div {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        align-items: center;
+        letter-spacing: .05rem;
+        width: 100%;
+      }
+      .required{
+        color: $secondary-color;
+        cursor: pointer;
+      }
+
+      input{
+        outline: none;
+        border: none;
+        background-color: $light-gray-color;
+        padding: 8px 15px;
+        letter-spacing: .05rem;
+      }
+      select {
+        appearance: none;
+        width: clamp(200px, 90%, 213px);
+        border-radius: 5px;
+        padding: 5px 10px;
+        outline: none;
+        background-color: $light-gray-color;
+        position: relative;
+        border: 1px none;
+      }
+      
+      select:focus {
+        background-color: $background-color;
+      }
+      
+      select option {
+        background-color: $background-color;
+        padding: 10px;
+        color: $black-color;
+        font-size: 1rem;
+      }
+      
+      select option:hover {
+        color: $background-color;
+        transition: background-color 0.3s ease;
+      }
+      
+      button{
+        padding: 10px 20px;
+        background-color: $secondary-color;
+        color: $background-color;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover{
+          background-color: $primary-color;
+        }
+      }
+
+      p{
+        font-size: $font-size-small;
+        span{
+          color: $secondary-color;
+          cursor: pointer;
+          &:hover{
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+}

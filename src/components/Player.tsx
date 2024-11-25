@@ -1,5 +1,5 @@
 import React from "react";
-import "./Player.scss";
+import "../styles/Player.scss";
 
 interface PlayerProps {
   track: {

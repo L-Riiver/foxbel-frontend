@@ -1,0 +1,124 @@
+
+@use 'variables' as *;
+
+.search__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1.5rem 0.2rem;
+  gap: 1rem;
+  width: 100%;
+  .input__menu__container{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+
+  }
+  .search__input__container {
+    display: flex;
+    position: relative;
+  }
+
+  .search__input {
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 50rem; 
+    border: 1px solid #afafaf;
+    outline: none;
+    font-size: 1rem;
+    background-color: #f1f1f1;
+    color: #000;
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+
+    &:focus {
+      background-color: #fff;
+      border-color: #007bff; 
+    }
+
+    &::placeholder {
+      color: #999;
+      font-style: italic;
+    }
+  }
+
+  .button__search {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%); 
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.1); 
+    }
+
+    img {
+      max-width: 20px; 
+      height: auto;
+    }
+  }
+
+  
+
+  .button__menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 25px; 
+    height: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    position: relative; 
+    outline: none;
+    margin: auto 0;
+  
+    .bar {
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      background-color: #000;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+  
+    .bar:nth-child(1) {
+      top: 0; 
+    }
+  
+    .bar:nth-child(2) {
+      top: 50%; 
+      transform: translateY(-50%);
+    }
+  
+    .bar:nth-child(3) {
+      bottom: 0; 
+    }
+  
+    &.open {
+      .bar:nth-child(1) {
+        transform: rotate(45deg);
+        top: 50%;
+      }
+  
+      .bar:nth-child(2) {
+        transform: rotate(-45deg);
+      }
+  
+      .bar:nth-child(3) {
+        opacity: 0;
+        top: 50%;
+      }
+    }
+  }
+  
+}
