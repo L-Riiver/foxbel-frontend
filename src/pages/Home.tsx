@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Results from "../components/Results";
+import "../styles/home.scss";
 
 interface HomeProps {
   onTrackSelect: (track: { title: string; artist: string; album: string; preview: string }) => void;
@@ -21,6 +23,8 @@ const Home: React.FC<HomeProps> = ({ onTrackSelect }) => {
             artist: firstTrack.artist,
             album: firstTrack.album,
             albumCover: firstTrack.albumCover,
+            artist_img: firstTrack.artist_img,
+            preview: firstTrack.preview,
           });
           setTracks(data);
         }
@@ -32,60 +36,41 @@ const Home: React.FC<HomeProps> = ({ onTrackSelect }) => {
   }, []);
 
   return (
-    <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
-      <h1 className="home__h1 offscreen">Foxbel Music</h1>
+    <div className="home">
+      <h1 className="home__h1 offscreen"><strong>Foxbel Music</strong></h1>
 
-      {/* InfoCard */}
       {artistInfo && (
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            padding: "20px",
-            background: `url(${artistInfo.albumCover}) no-repeat center center / cover`,
-            color: "white",
-            borderRadius: "10px",
-            marginBottom: "20px",
-          }}
-        >
-          <div>
+        <div className="artist__infocard">
+          <img src={artistInfo.artist_img} alt="artistInfo.title" className="infocard_background" />
+          <div className="play__infocard__container">
+            <div
+              className="play__infocard"
+              onClick={() =>
+                onTrackSelect({
+                  title: artistInfo.title,
+                  artist: artistInfo.artist,
+                  album: artistInfo.album,
+                  preview: artistInfo.preview,
+                })
+              }
+            >
+              <img className="infocard__img" src={artistInfo.albumCover} alt={artistInfo.title} />
+            </div>
+          </div>
+          <div className="infocard__info">
             <h2>{artistInfo.artist}</h2>
-            <p>Album: {artistInfo.album}</p>
+            <p>
+              Álbum
+              <br />
+              <strong>{artistInfo.album}</strong>
+            </p>
           </div>
         </div>
       )}
 
-      {/* Tracks */}
-      <h2>Top Songs</h2>
+      <h2>Grandes Éxitos</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      {tracks.length > 0 ? (
-        <ul style={{ listStyle: "none", padding: 0 }}>
-          {tracks.map((track: any) => (
-            <li
-              key={track.id}
-              style={{
-                marginBottom: "10px",
-                padding: "10px",
-                border: "1px solid #ddd",
-                borderRadius: "5px",
-                cursor: "pointer",
-              }}
-              onClick={() =>
-                onTrackSelect({
-                  title: track.title,
-                  artist: track.artist,
-                  album: track.album,
-                  preview: track.preview,
-                })
-              }
-            >
-              <strong>{track.title}</strong> by {track.artist}
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No tracks available</p>
-      )}
+      <Results tracks={tracks} onTrackSelect={onTrackSelect} />
     </div>
   );
 };

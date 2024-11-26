@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/Navbar.scss";
 import AuthContext from "../context/AuthContext";
-
 import { toast } from "react-toastify";
 
 interface SearchBarProps {
@@ -13,8 +12,6 @@ interface SearchBarProps {
 const Navbar: React.FC<SearchBarProps> = ({ onLoginClick, onRegisterClick }) => {
   const authContext = useContext(AuthContext);
   const navigate = useNavigate();
-
-  
 
   if (!authContext) {
     console.error("AuthContext is undefined. Did you forget to wrap your app in an AuthProvider?");
@@ -29,7 +26,7 @@ const Navbar: React.FC<SearchBarProps> = ({ onLoginClick, onRegisterClick }) => 
     toast.info("Sesión cerrada");
     navigate("/");
   };
-  
+
   useEffect(() => {
     const fetchUser = async () => {
       const token = localStorage.getItem("token");
@@ -73,8 +70,10 @@ const Navbar: React.FC<SearchBarProps> = ({ onLoginClick, onRegisterClick }) => 
             <li><Link to="/favorites">Favoritos</Link></li>
           </ul>
         </>
-      ):('')}
-      
+      ) : (
+        ""
+      )}
+
       <h2>Descubre</h2>
       <ul className="menu">
         <li><Link to="/">Artistas</Link></li>
@@ -86,22 +85,22 @@ const Navbar: React.FC<SearchBarProps> = ({ onLoginClick, onRegisterClick }) => 
         <h2>Usuario</h2>
         {user ? (
           <div className="user__info">
-          <Link to="/profile" >
-            <img
-              src={user.profile_picture || "img/default-user.png"}
-              alt={user.first_name || "User image"}
-              className="user__image"
-              title="Editar perfil"
-            />
-          </Link>
+            <Link to="/profile">
+              <img
+                src={user.profile_picture || "/img/default-user.png"}
+                alt={user.first_name || "User image"}
+                className="user__image"
+                title="Editar perfil"
+              />
+            </Link>
             <span className="user__name">
-              Bienvenido <br></br> {user.first_name} {user.last_name ? user.last_name.charAt(0) : ""}.
+              Bienvenido <br /> {user.first_name} {user.last_name ? user.last_name.charAt(0) : ""}.
             </span>
 
             <button className="button__logout" onClick={handleLogout}>
               Cerrar Sesión
             </button>
-            </div>
+          </div>
         ) : (
           <>
             <button className="button__login" onClick={onLoginClick}>

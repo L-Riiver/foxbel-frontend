@@ -13,6 +13,7 @@
   top: 0;
   left: 0;
   width: 230px;
+  z-index: 100;
   
   transform: translateX(-230px);
   transition: transform .2s linear;
@@ -100,6 +101,7 @@
           object-fit: cover;           
           object-position: center;     
           margin: auto;    
+          border-radius: 50%;
           &:hover {
             transform: scale(1.1);
           }             

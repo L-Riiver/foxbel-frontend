@@ -1,0 +1,44 @@
+@use 'variables' as *;
+
+.results {
+  margin-top: 2rem;
+
+  &__title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: $primary-color;
+  }
+
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1.5rem;
+    max-width: 1025px;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &-img {
+      width: 100%;
+      object-fit: cover;
+    }
+
+    &-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: $text-color;
+    }
+
+    &-artist {
+      font-size: 0.9rem;
+    }
+  }
+}

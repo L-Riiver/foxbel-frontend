@@ -1,0 +1,122 @@
+
+@use 'variables' as *;
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-block: 3rem;
+  
+  h1 {
+    font-size: $font-size-xlarge;
+    color: $text-color;
+    padding-block:0 .5rem;
+  }
+
+  .user__info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 4rem;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    .user__img__container {
+      width: 150px;
+      height: 150px;
+      overflow: hidden;
+      background-color: $background-color;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      .user__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .user__name {
+      font-size: $font-size-medium;
+      color: $text-color;
+      text-align: left;
+      margin-top: 10px;
+      br {
+        display: block;
+      }
+    }
+    .user__time{
+      font-size: $font-size-medium;
+    }
+    .favorites__url{
+      text-decoration: underline;
+    }
+  }
+
+  h2 {
+    font-size: $font-size-medium;
+    color: $text-color;
+    margin-bottom: 20px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+
+    .input__container{
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      label {
+        font-size: 1rem;
+        color: $text-color;
+        margin-bottom: 5px;
+      }
+    }
+
+
+    input {
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+      transition: border 0.3s ease;
+
+      &:focus {
+        border-color: #007bff;
+      }
+    }
+
+    button{
+      padding: 10px 20px;
+      background-color: $secondary-color;
+      color: $background-color;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover{
+        background-color: $primary-color;
+      }
+    }
+
+    .image-preview {
+      margin-top: 10px;
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 5px;
+      border: 1px solid $light-gray-color;
+      border-radius: 50%;
+    }
+  }
+}

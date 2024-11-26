@@ -42,6 +42,16 @@ button:focus-visible {
   width: 100%;
   flex-direction: column;
   align-items: center;
+  position: relative;
+
+  div{
+    max-width: 100vw;
+  }
+}
+
+.required_symbol{
+  color: $secondary-color;
+  cursor: pointer;
 }
 
 @media (prefers-color-scheme: light) {

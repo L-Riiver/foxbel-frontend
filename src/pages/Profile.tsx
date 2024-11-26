@@ -1,7 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { toast } from "react-toastify";
+
+import "../styles/Profile.scss";
 
 const Profile: React.FC = () => {
   const { user, setUser } = useContext(AuthContext);
@@ -12,9 +14,11 @@ const Profile: React.FC = () => {
     last_name: "",
     email: "",
     profile_picture: "",
+    createdAt: "",
   });
   const [currentPassword, setCurrentPassword] = useState("");
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null); // Para mostrar la miniatura de la imagen
 
   useEffect(() => {
     if (!user) {
@@ -25,6 +29,7 @@ const Profile: React.FC = () => {
         last_name: user.last_name,
         email: user.email,
         profile_picture: user.profile_picture || "",
+        createdAt: user.createdAt,
       });
     }
   }, [user, navigate]);
@@ -36,7 +41,15 @@ const Profile: React.FC = () => {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      setImageFile(e.target.files[0]);
+      const file = e.target.files[0];
+      setImageFile(file);
+
+      // Crear una URL para la imagen seleccionada y mostrarla en miniatura
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string); // Guardar la URL de la imagen en el estado
+      };
+      reader.readAsDataURL(file); // Leer el archivo como una URL
     }
   };
 
@@ -84,10 +97,35 @@ const Profile: React.FC = () => {
 
   return (
     <div className="profile">
+      <h1>Mi Perfil</h1>
+      <div className="user__info">
+        <div className="user__img__container">
+          <img
+            src={user?.profile_picture || "/img/default-user.png"}
+            alt={user?.first_name || "User image"}
+            className="user__image"
+            title="Editar perfil"
+          />
+        </div>
+        <span className="user__name">
+          Bienvenido a tu perfil, <br /> {user?.first_name} {user?.last_name ? user?.last_name : ""}<br /><br />
+        </span>
+        <span className="user__time">
+          Usuario desde <br />{user?.createdAt.split("T")[0]}
+        </span>
+        <br />
+        
+
+        <Link className="favorites__url" to={"/favorites"}>Ver tus favoritos...</Link>
+        
+      </div>
+      
+
+      
       <h2>Editar Perfil</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Nombre</label>
+        <div className="input__container">
+          <label>Nombre:</label>
           <input
             type="text"
             name="first_name"
@@ -96,8 +134,8 @@ const Profile: React.FC = () => {
             required
           />
         </div>
-        <div>
-          <label>Apellido</label>
+        <div className="input__container">
+          <label>Apellido:</label>
           <input
             type="text"
             name="last_name"
@@ -106,8 +144,8 @@ const Profile: React.FC = () => {
             required
           />
         </div>
-        <div>
-          <label>Email</label>
+        <div className="input__container">
+          <label>Email:</label>
           <input
             type="email"
             name="email"
@@ -116,12 +154,13 @@ const Profile: React.FC = () => {
             required
           />
         </div>
-        <div>
-          <label>Foto de perfil</label>
+        <div className="input__container">
+          <label>Foto de perfil:</label>
+          {imagePreview && <img src={imagePreview} alt="Vista previa" className="image-preview" />}
           <input type="file" onChange={handleFileChange} />
         </div>
-        <div>
-          <label>Contraseña actual</label>
+        <div className="input__container">
+          <label>Contraseña actual:<span className="required_symbol" title="Obligatorio">*</span></label>
           <input
             type="password"
             value={currentPassword}

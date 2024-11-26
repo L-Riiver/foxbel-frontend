@@ -8,6 +8,10 @@
   padding: 1.5rem 0.2rem;
   gap: 1rem;
   width: 100%;
+  position: fixed;
+  background-color: $background-color;
+  z-index: 50;
+
   .input__menu__container{
     width: 100%;
     display: flex;
@@ -23,20 +27,20 @@
     width: 100%;
     padding: 5px 10px;
     border-radius: 50rem; 
-    border: 1px solid #afafaf;
+    border: 1px solid $gray-color;
     outline: none;
     font-size: 1rem;
-    background-color: #f1f1f1;
+    background-color: $background-color;
     color: #000;
     transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 
     &:focus {
-      background-color: #fff;
-      border-color: #007bff; 
+      background-color: $background-color;
+      border-color: $secondary-color; 
     }
 
     &::placeholder {
-      color: #999;
+      color: $gray-color;
       font-style: italic;
     }
   }
@@ -87,7 +91,7 @@
       position: absolute;
       width: 100%;
       height: 3px;
-      background-color: #000;
+      background-color: $black-color;
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
   

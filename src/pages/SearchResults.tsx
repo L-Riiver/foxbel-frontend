@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import Results from "../components/Results";
 
 interface SearchResultsProps {
   onTrackSelect: (track: { title: string; artist: string; album: string; preview: string }) => void;
@@ -29,39 +30,10 @@ const SearchResults: React.FC<SearchResultsProps> = ({ onTrackSelect }) => {
   }, [query]);
 
   return (
-    <div>
-      <h1>Search Results for "{query}"</h1>
-
+    <div className="search-results">
+      <h1>Resultados para "{query}"</h1>
       {error && <p style={{ color: "red" }}>{error}</p>}
-
-      {results.length > 0 ? (
-        <ul style={{ listStyle: "none", padding: 0 }}>
-          {results.map((track: any) => (
-            <li
-              key={track.id}
-              style={{
-                marginBottom: "10px",
-                padding: "10px",
-                border: "1px solid #ddd",
-                borderRadius: "5px",
-                cursor: "pointer",
-              }}
-              onClick={() =>
-                onTrackSelect({
-                  title: track.title,
-                  artist: track.artist,
-                  album: track.album,
-                  preview: track.preview,
-                })
-              }
-            >
-              <strong>{track.title}</strong> by {track.artist} (Album: {track.album})
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No results found</p>
-      )}
+      <Results tracks={results} onTrackSelect={onTrackSelect} />
     </div>
   );
 };
