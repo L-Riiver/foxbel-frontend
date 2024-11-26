@@ -52,71 +52,76 @@
     .user__time{
       font-size: $font-size-medium;
     }
-    .favorites__url{
-      text-decoration: underline;
-    }
   }
-
-  h2 {
-    font-size: $font-size-medium;
-    color: $text-color;
-    margin-bottom: 20px;
+  .favorites__url{
+    text-decoration: underline;
   }
-
-  form {
-    display: flex;
-    flex-direction: column;
+  .edit__profile{
     width: 100%;
-    gap: 15px;
+    padding-block: 4rem;
+    
 
-    .input__container{
+    h2 {
+      font-size: $font-size-medium;
+      color: $text-color;
+      margin-bottom: 20px;
+    }
+
+    form {
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      width: 100%;
+      gap: 15px;
 
-      label {
+      .input__container{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        label {
+          font-size: 1rem;
+          color: $text-color;
+          margin-bottom: 5px;
+        }
+      }
+
+
+      input {
+        padding: 10px;
         font-size: 1rem;
-        color: $text-color;
-        margin-bottom: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        outline: none;
+        transition: border 0.3s ease;
+
+        &:focus {
+          border-color: #007bff;
+        }
       }
-    }
 
+      button{
+        padding: 10px 20px;
+        background-color: $secondary-color;
+        color: $background-color;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
 
-    input {
-      padding: 10px;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      outline: none;
-      transition: border 0.3s ease;
-
-      &:focus {
-        border-color: #007bff;
+        &:hover{
+          background-color: $primary-color;
+        }
       }
-    }
 
-    button{
-      padding: 10px 20px;
-      background-color: $secondary-color;
-      color: $background-color;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-
-      &:hover{
-        background-color: $primary-color;
+      .image-preview {
+        margin-top: 10px;
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 5px;
+        border: 1px solid $light-gray-color;
+        border-radius: 50%;
       }
-    }
-
-    .image-preview {
-      margin-top: 10px;
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border-radius: 5px;
-      border: 1px solid $light-gray-color;
-      border-radius: 50%;
     }
   }
 }

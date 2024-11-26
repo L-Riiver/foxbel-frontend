@@ -46,9 +46,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ onClose, onSwitchToRegister }) =>
     <form onSubmit={handleLogin}>
       <h2>Iniciar Sesión</h2>
       <div>
-        <label>Correo Electrónico</label>
+        <label>Correo Electrónico o <br/>Número de Teléfono</label>
         <input
-          type="email"
+          type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required

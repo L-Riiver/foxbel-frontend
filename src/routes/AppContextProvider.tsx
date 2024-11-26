@@ -4,7 +4,7 @@ import SearchBar from "../components/SearchBar";
 
 interface AppContextProviderProps {
   children: ReactNode;
-  onTrackSelect: (track: { title: string; artist: string; album: string; preview: string }) => void;
+  onTrackSelect: (track: { title: string; artist: string; album: string;album_cover:string; preview: string }) => void;
 }
 
 const AppContextProvider: React.FC<AppContextProviderProps> = ({

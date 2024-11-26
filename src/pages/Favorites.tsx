@@ -1,22 +1,30 @@
-import React, { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState, useContext } from "react";
+import Results from "../components/Results";
 import AuthContext from "../context/AuthContext";
 
-const Favorites: React.FC = () => {
+const Favorites: React.FC<{ onTrackSelect: any }> = ({ onTrackSelect }) => {
   const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const [favorites, setFavorites] = useState<any[]>([]);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    if (!user) {
-      navigate("/"); // Redirigir si no está autenticado
+    if (user) {
+      fetch("http://localhost:5000/api/favorites/"+user.id, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+        .then((response) => response.json())
+        .then(setFavorites)
+        .catch((error) => setError("Failed to load favorites: " + error));
     }
-  }, [user, navigate]);
+  }, [user]);
 
   return (
-    <div className="favorites">
-      <h2>Mis Favoritos</h2>
-      {/* Contenido de favoritos */}
-      <p>Aquí aparecerán tus canciones favoritas.</p>
+    <div>
+      <h1>Your Favorites</h1>
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      <Results tracks={favorites} onTrackSelect={onTrackSelect} />
     </div>
   );
 };

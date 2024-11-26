@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import SearchResults from "../pages/SearchResults";
 import Profile from "../pages/Profile";
+import Favorites from "../pages/Favorites";
 
 //components
 import Navbar from "../components/Navbar";
@@ -16,6 +17,7 @@ const AppRoutes: React.FC = () => {
     title: string;
     artist: string;
     album: string;
+    album_cover: string;
     preview: string;
   } | null>(null);
 
@@ -23,6 +25,7 @@ const AppRoutes: React.FC = () => {
     title: string;
     artist: string;
     album: string;
+    album_cover: string;
     preview: string;
   }) => {
     setCurrentTrack(track);
@@ -47,6 +50,7 @@ const AppRoutes: React.FC = () => {
           <Route path="/" element={<Home onTrackSelect={handleTrackSelect} />} />
           <Route path="/tracks" element={<SearchResults onTrackSelect={handleTrackSelect} />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/favorites" element={<Favorites onTrackSelect={handleTrackSelect} />} />
         </Routes>
         <Player track={currentTrack} />
 

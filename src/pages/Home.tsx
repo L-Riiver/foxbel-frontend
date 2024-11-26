@@ -4,7 +4,7 @@ import Results from "../components/Results";
 import "../styles/home.scss";
 
 interface HomeProps {
-  onTrackSelect: (track: { title: string; artist: string; album: string; preview: string }) => void;
+  onTrackSelect: (track: { title: string; artist: string; album: string;album_cover:string; preview: string }) => void;
 }
 
 const Home: React.FC<HomeProps> = ({ onTrackSelect }) => {
@@ -22,7 +22,7 @@ const Home: React.FC<HomeProps> = ({ onTrackSelect }) => {
           setArtistInfo({
             artist: firstTrack.artist,
             album: firstTrack.album,
-            albumCover: firstTrack.albumCover,
+            album_cover: firstTrack.album_cover,
             artist_img: firstTrack.artist_img,
             preview: firstTrack.preview,
           });
@@ -50,11 +50,13 @@ const Home: React.FC<HomeProps> = ({ onTrackSelect }) => {
                   title: artistInfo.title,
                   artist: artistInfo.artist,
                   album: artistInfo.album,
+                  album_cover: artistInfo.album_cover,
                   preview: artistInfo.preview,
                 })
               }
             >
-              <img className="infocard__img" src={artistInfo.albumCover} alt={artistInfo.title} />
+              <div className="disc__circle"></div>
+              <img className="infocard__img" src={artistInfo.album_cover} alt={artistInfo.title} />
             </div>
           </div>
           <div className="infocard__info">

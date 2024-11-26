@@ -49,16 +49,43 @@
         justify-content: center;
         cursor: pointer;
         transition: background-color 0.3s ease;
+        
 
         &:hover {
           background-color: rgba(0, 0, 0, 1);
+          animation: rotateLines 1.5s ;
+      
+          .disc__circle {
+            background-color: rgba(0, 0, 0, 1); 
+          }
         }
 
         .infocard__img {
-          width: 130px;
-          height: 130px;
+          width: 110px;
+          height: 110px;
           object-fit: cover;
           border-radius: 50%;
+        }
+
+        .disc__circle {
+          position: absolute;
+          width: 30px;  // Tamaño del círculo central
+          height: 30px;
+          background-color: rgba(0, 0, 0, 0.7);
+          border-radius: 50%;
+          z-index: 10;
+          transition: background-color 0.3s ease;
+      
+      
+        }
+
+        @keyframes rotateLines {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
         }
       }
     }

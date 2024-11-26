@@ -4,7 +4,7 @@ import axios from "axios";
 import Results from "../components/Results";
 
 interface SearchResultsProps {
-  onTrackSelect: (track: { title: string; artist: string; album: string; preview: string }) => void;
+  onTrackSelect: (track: { title: string; artist: string; album: string; album_cover: string; preview: string }) => void;
 }
 
 const SearchResults: React.FC<SearchResultsProps> = ({ onTrackSelect }) => {

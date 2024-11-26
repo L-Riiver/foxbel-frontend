@@ -116,60 +116,62 @@ const Profile: React.FC = () => {
         <br />
         
 
-        <Link className="favorites__url" to={"/favorites"}>Ver tus favoritos...</Link>
         
       </div>
+      <Link className="favorites__url" to={"/favorites"}>Ver tus favoritos...</Link>
       
 
-      
-      <h2>Editar Perfil</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="input__container">
-          <label>Nombre:</label>
-          <input
-            type="text"
-            name="first_name"
-            value={formData.first_name}
-            onChange={handleChange}
-            required
-          />
+      <div className="edit__profile">
+        
+        <h2>Editar Perfil</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="input__container">
+            <label>Nombre:</label>
+            <input
+              type="text"
+              name="first_name"
+              value={formData.first_name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="input__container">
+            <label>Apellido:</label>
+            <input
+              type="text"
+              name="last_name"
+              value={formData.last_name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="input__container">
+            <label>Email:</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="input__container">
+            <label>Foto de perfil:</label>
+            {imagePreview && <img src={imagePreview} alt="Vista previa" className="image-preview" />}
+            <input type="file" onChange={handleFileChange} />
+          </div>
+          <div className="input__container">
+            <label>Contraseña actual:<span className="required_symbol" title="Obligatorio">*</span></label>
+            <input
+              type="password"
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit">Guardar Cambios</button>
+        </form>
         </div>
-        <div className="input__container">
-          <label>Apellido:</label>
-          <input
-            type="text"
-            name="last_name"
-            value={formData.last_name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="input__container">
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="input__container">
-          <label>Foto de perfil:</label>
-          {imagePreview && <img src={imagePreview} alt="Vista previa" className="image-preview" />}
-          <input type="file" onChange={handleFileChange} />
-        </div>
-        <div className="input__container">
-          <label>Contraseña actual:<span className="required_symbol" title="Obligatorio">*</span></label>
-          <input
-            type="password"
-            value={currentPassword}
-            onChange={(e) => setCurrentPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit">Guardar Cambios</button>
-      </form>
     </div>
   );
 };
