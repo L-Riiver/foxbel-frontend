@@ -7,7 +7,7 @@
   padding: 20px;
   max-width: 800px;
   margin: 0 auto;
-  padding-block: 3rem;
+  padding-block: 7rem;
   
   h1 {
     font-size: $font-size-xlarge;
@@ -49,12 +49,21 @@
         display: block;
       }
     }
-    .user__time{
-      font-size: $font-size-medium;
-    }
+  }
+  .user__time{
+    font-size: $font-size-medium;
+    padding-block: 4rem;
   }
   .favorites__url{
+    color: $secondary-color;
+    font-size: $font-size-medium;
     text-decoration: underline;
+    transition: transform .3s ;
+
+
+    &:hover{
+      transform: translateX(5px);
+    }
   }
   .edit__profile{
     width: 100%;
@@ -77,6 +86,31 @@
         display: flex;
         flex-direction: column;
         gap: 5px;
+        &.photo{
+          align-items: center;
+          .image-preview {
+            margin-top: 10px;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border: 2px solid $black-color;
+            border-radius: 50%;
+            @media (min-width:1300px) {
+              width: 150px;
+              height: 150px;
+            }
+            
+          }
+          .button__file {
+            display: none;
+          }
+          .update__photo{
+            padding:.5rem 1rem ;
+            border: 1px solid $gray-color;
+            border-radius: 5px;
+            cursor: pointer;
+          }
+        }
 
         label {
           font-size: 1rem;
@@ -89,14 +123,10 @@
       input {
         padding: 10px;
         font-size: 1rem;
-        border: 1px solid #ccc;
         border-radius: 5px;
         outline: none;
-        transition: border 0.3s ease;
+        cursor: pointer;
 
-        &:focus {
-          border-color: #007bff;
-        }
       }
 
       button{
@@ -113,15 +143,7 @@
         }
       }
 
-      .image-preview {
-        margin-top: 10px;
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-        border-radius: 5px;
-        border: 1px solid $light-gray-color;
-        border-radius: 50%;
-      }
+      
     }
   }
 }

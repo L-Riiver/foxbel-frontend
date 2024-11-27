@@ -42,10 +42,10 @@ const Navbar: React.FC<SearchBarProps> = ({ onLoginClick, onRegisterClick }) => 
 
           if (response.ok) {
             const data = await response.json();
-            setUser(data.user); // Actualizar el contexto con los datos del usuario
+            setUser(data.user); // context update user data
           } else {
             console.error("Failed to fetch user data.");
-            handleLogout(); // Si el token es inválido, cerrar sesión
+            handleLogout(); // invalid token
           }
         } catch (error) {
           console.error("Error fetching user data:", error);
@@ -57,7 +57,7 @@ const Navbar: React.FC<SearchBarProps> = ({ onLoginClick, onRegisterClick }) => 
   }, [setUser]);
 
   return (
-    <nav className="navbar">
+    <nav className="navbar" >
       <div className="logo">
         <Link to="/">
           <img className="navbar__logo" src="img/logo.png" alt="Foxbel Logo" />
@@ -67,7 +67,7 @@ const Navbar: React.FC<SearchBarProps> = ({ onLoginClick, onRegisterClick }) => 
         <>
           <h2>Mi librería</h2>
           <ul className="menu">
-            <li><Link to="/favorites">Favoritos</Link></li>
+            <li><Link to="/favorites">❤️ Favoritos</Link></li>
           </ul>
         </>
       ) : (
@@ -76,9 +76,9 @@ const Navbar: React.FC<SearchBarProps> = ({ onLoginClick, onRegisterClick }) => 
 
       <h2>Descubre</h2>
       <ul className="menu">
-        <li><Link to="/">Artistas</Link></li>
-        <li><Link to="/">Álbumes</Link></li>
-        <li><Link to="/">Podcast</Link></li>
+        <li><Link to="/">🎸Artistas</Link></li>
+        <li><Link to="/">💿Álbumes</Link></li>
+        <li><Link to="/">🎤Podcast</Link></li>
       </ul>
 
       <div className="button__container">

@@ -20,6 +20,7 @@ const Home: React.FC<HomeProps> = ({ onTrackSelect }) => {
         if (data.length > 0) {
           const firstTrack = data[0];
           setArtistInfo({
+            title: firstTrack.title,
             artist: firstTrack.artist,
             album: firstTrack.album,
             album_cover: firstTrack.album_cover,
@@ -62,9 +63,9 @@ const Home: React.FC<HomeProps> = ({ onTrackSelect }) => {
           <div className="infocard__info">
             <h2>{artistInfo.artist}</h2>
             <p>
-              Álbum
+              <strong>{artistInfo.title}</strong>
               <br />
-              <strong>{artistInfo.album}</strong>
+              {artistInfo.album}
             </p>
           </div>
         </div>

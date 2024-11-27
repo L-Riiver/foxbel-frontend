@@ -31,7 +31,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ onTrackSelect }) => {
 
   return (
     <div className="search-results">
-      <h1>Resultados para "{query}"</h1>
+      <h1>Mejores Resultados: <strong>{query.toUpperCase()}</strong></h1>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <Results tracks={results} onTrackSelect={onTrackSelect} />
     </div>

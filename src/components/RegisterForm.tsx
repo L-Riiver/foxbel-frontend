@@ -39,7 +39,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onClose, onSwitchToLogin })
     if (response.ok) {
       const data = await response.json();
       localStorage.setItem("token", data.token);
-      setUser(data.user); // Actualiza el contexto
+      setUser(data.user); // context update
       toast.success("Usuario registrado con éxito");
       onClose();
     } else {
@@ -87,7 +87,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onClose, onSwitchToLogin })
       <div>
         <label>Género:</label>
         <select name="gender" value={formData.gender} onChange={handleChange}>
-          <option value="">Selecciona</option>
+          <option value="other">Seleccionar</option>
           <option value="male">Masculino</option>
           <option value="female">Femenino</option>
           <option value="other">Otro</option>

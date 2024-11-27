@@ -21,7 +21,7 @@ const Favorites: React.FC<{ onTrackSelect: any }> = ({ onTrackSelect }) => {
   }, [user]);
 
   return (
-    <div>
+    <div className="favorites">
       <h1>Your Favorites</h1>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <Results tracks={favorites} onTrackSelect={onTrackSelect} />

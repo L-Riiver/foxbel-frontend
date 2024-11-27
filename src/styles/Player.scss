@@ -1,40 +1,65 @@
 @use 'variables' as *;
 
 .player {
-  background-color: #ff5a5f;
-  color: white;
+  background-color: $secondary-color;
+  color: $background-color;
   position: fixed;
   bottom: 0;
-  width: 100%;
-  padding:.5rem;
+  width: 100vw;
+  padding:.8rem .5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 200;
+
+  
+  @media (min-width: 575px) {
+    padding: 1.5rem 3rem;
+    left: 0;
+  }
+
+  @media (min-width: 1300px) {
+    padding: 2rem 20rem;
+    gap: 2rem;
+  }
 
   .player__container {
     position: absolute;
-    width: 55px;
-    height: 55px;
-    background-color: $black-color;
+    width: 65px;
+    height: 65px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     animation: rotateDisc 3s linear infinite;
     animation-play-state: paused;
+    background-image: url("img/disc.png");
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat; 
+
+    @media (min-width:1300px) {
+      width: 95px;
+      height: 95px;
+    }
     
     .track__img {
-      width: 40px;
-      height: 40px;
+      width: 35px;
+      height: 35px;
       object-fit: cover;
       border-radius: 50%;
+      
+      @media (min-width:1300px) {
+        width: 40px;
+        height: 40px;
+      }
     }
 
     .disc__circle {
       position: absolute;
-      width: 13px;  
-      height: 13px;
-      background-color: $black-color;;
+      width: 4px;  
+      height: 4px;
+      background-color: $background-color;;
       border-radius: 50%;
     }
 
@@ -47,6 +72,7 @@
     0% {
       transform: rotate(0deg);
     }
+    
     100% {
       transform: rotate(360deg);
     }
@@ -58,9 +84,13 @@
     
     .player__info{
       display: flex;
-      padding:0 .2rem 0 3.7rem;
+      padding:0 .2rem 0 4rem;
       flex-direction: column;
       font-size: $font-size-base;
+
+      @media (min-width:1300px) {
+        padding-left: 7rem;
+      }
       .artist {
         font-size: $font-size-small;
       }
@@ -102,21 +132,34 @@
       background-color: $background-color;
       border-radius: 5px;
       outline: none;
+      @media (min-width: 575px) {
+        width: 100px;
+      }
+      @media (min-width: 1300px) {
+        width: 130px;
+      }
 
       &::-webkit-slider-thumb {
         -webkit-appearance: none;
         appearance: none;
         width: 15px;
         height: 15px;
-        background-color: $text-color;
+        background-color: $black-color;
         border-radius: 50%;
+        @media (min-width: 1300px) {
+          width: 20px;
+          height: 20px;
+        }
       }
 
       &::-moz-range-thumb {
-        width: 15px;
-        height: 15px;
+        width: 20px;
+        height: 20px;
         background-color: $black-color;
         border-radius: 50%;
+        @media (min-width: 1300px) {
+          width: 130px;
+        }
       }
     }
   }

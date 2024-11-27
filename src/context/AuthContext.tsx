@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
           if (response.ok) {
             const data = await response.json();
-            setUser(data.user); // Establece el usuario en el contexto
+            setUser(data.user); // set context user
           } else {
             console.error("Token inválido, cerrando sesión.");
             logout();

@@ -16,6 +16,10 @@
     width: 100%;
     display: flex;
     justify-content: space-evenly;
+    @media (min-width:1300px) {
+      justify-content: center;
+      gap: 10rem;
+    }
 
   }
   .search__input__container {
@@ -31,7 +35,7 @@
     outline: none;
     font-size: 1rem;
     background-color: $background-color;
-    color: #000;
+    color: $black-color;
     transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 
     &:focus {
@@ -86,6 +90,9 @@
     position: relative; 
     outline: none;
     margin: auto 0;
+    @media (min-width:1300px) {
+      display: none;
+    }
   
     .bar {
       position: absolute;
@@ -122,6 +129,22 @@
         opacity: 0;
         top: 50%;
       }
+    }
+  }
+
+  .menu__container{
+    display: none;
+    gap: 1rem;
+    align-items: center;
+    .user__image{
+      width: 35px;
+      height: 35px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    @media (min-width:1300px) {
+      display: flex;
     }
   }
   

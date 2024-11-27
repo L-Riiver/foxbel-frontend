@@ -30,7 +30,7 @@ const Player: React.FC<PlayerProps> = ({ track }) => {
     }
   };
 
-  // Función para cambiar el volumen
+  // volume change
   const handleVolumeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newVolume = parseFloat(event.target.value);
     if (audioRef.current) {

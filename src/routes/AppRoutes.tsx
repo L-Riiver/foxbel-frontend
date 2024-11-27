@@ -45,6 +45,7 @@ const AppRoutes: React.FC = () => {
         <Navbar
           onLoginClick={() => setShowLoginModal(true)}
           onRegisterClick={() => setShowRegisterModal(true)}
+          
         />
         <Routes>
           <Route path="/" element={<Home onTrackSelect={handleTrackSelect} />} />

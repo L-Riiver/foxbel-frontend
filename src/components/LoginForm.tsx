@@ -64,6 +64,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onClose, onSwitchToRegister }) =>
         />
       </div>
       <button type="submit">Iniciar Sesión</button>
+      {/* to register */}
       <p>
         ¿No tienes cuenta?{" "}
         <span onClick={onSwitchToRegister} >

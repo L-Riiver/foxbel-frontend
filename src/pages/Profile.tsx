@@ -18,11 +18,12 @@ const Profile: React.FC = () => {
   });
   const [currentPassword, setCurrentPassword] = useState("");
   const [imageFile, setImageFile] = useState<File | null>(null);
-  const [imagePreview, setImagePreview] = useState<string | null>(null); // Para mostrar la miniatura de la imagen
+  const [imagePreview, setImagePreview] = useState<string | null>(null); 
+  
 
   useEffect(() => {
     if (!user) {
-      navigate("/"); // Redirigir si no está autenticado
+      navigate("/"); 
     } else {
       setFormData({
         first_name: user.first_name,
@@ -44,12 +45,12 @@ const Profile: React.FC = () => {
       const file = e.target.files[0];
       setImageFile(file);
 
-      // Crear una URL para la imagen seleccionada y mostrarla en miniatura
+      // Create image url 
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImagePreview(reader.result as string); // Guardar la URL de la imagen en el estado
+        setImagePreview(reader.result as string); // save url 
       };
-      reader.readAsDataURL(file); // Leer el archivo como una URL
+      reader.readAsDataURL(file); // read file
     }
   };
 
@@ -83,7 +84,7 @@ const Profile: React.FC = () => {
 
       if (response.ok) {
         const data = await response.json();
-        setUser(data.user); // Actualizar el contexto
+        setUser(data.user); // context update user data
         toast.success("Perfil actualizado con éxito.");
       } else {
         const error = await response.json();
@@ -97,7 +98,6 @@ const Profile: React.FC = () => {
 
   return (
     <div className="profile">
-      <h1>Mi Perfil</h1>
       <div className="user__info">
         <div className="user__img__container">
           <img
@@ -108,17 +108,16 @@ const Profile: React.FC = () => {
           />
         </div>
         <span className="user__name">
-          Bienvenido a tu perfil, <br /> {user?.first_name} {user?.last_name ? user?.last_name : ""}<br /><br />
+          <h1>{user?.first_name} {user?.last_name ? user?.last_name : ""}</h1>
         </span>
-        <span className="user__time">
-          Usuario desde <br />{user?.createdAt.split("T")[0]}
-        </span>
-        <br />
         
 
         
       </div>
-      <Link className="favorites__url" to={"/favorites"}>Ver tus favoritos...</Link>
+        <span className="user__time">
+          Usuario desde: <br /><br /><strong>{user?.createdAt.split("T")[0]}</strong>
+        </span>
+      <Link className="favorites__url" to={"/favorites"}>Ir a tus favoritos »</Link>
       
 
       <div className="edit__profile">
@@ -155,10 +154,18 @@ const Profile: React.FC = () => {
               required
             />
           </div>
-          <div className="input__container">
-            <label>Foto de perfil:</label>
+          <div className="input__container photo">
+            <label htmlFor="profile-photo">Foto de perfil:</label>
+            {/* preview img */}
             {imagePreview && <img src={imagePreview} alt="Vista previa" className="image-preview" />}
-            <input type="file" onChange={handleFileChange} />
+            <input
+              id="profile-photo"
+              className="button__file"
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange}
+            />
+            <label htmlFor="profile-photo" className="update__photo">Seleccionar Foto</label>
           </div>
           <div className="input__container">
             <label>Contraseña actual:<span className="required_symbol" title="Obligatorio">*</span></label>

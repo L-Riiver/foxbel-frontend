@@ -1,7 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "../styles/Results.scss";
 import AuthContext from "../context/AuthContext";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 interface Track {
   id: number;
@@ -21,6 +22,8 @@ interface ResultsProps {
 const Results: React.FC<ResultsProps> = ({ tracks, onTrackSelect, title }) => {
   const { user } = useContext(AuthContext);
   const [menuTrackId, setMenuTrackId] = useState<number | null>(null);
+  const [hiddenTracks, setHiddenTracks] = useState<number[]>([]);
+  const [hideGrill, setHideGrill] = useState(false);
 
   const handleAddFavorite = async (track: Track) => {
     try {
@@ -35,7 +38,8 @@ const Results: React.FC<ResultsProps> = ({ tracks, onTrackSelect, title }) => {
 
       const data = await response.json();
       if (response.ok) {
-        toast.success("Track added to favorites");
+        toast.success("Añadido a favoritos correctamente");
+        setMenuTrackId(null);
       } else {
         toast.error(data.message || "Error adding to favorites");
       }
@@ -58,7 +62,8 @@ const Results: React.FC<ResultsProps> = ({ tracks, onTrackSelect, title }) => {
 
       const data = await response.json();
       if (response.ok) {
-        toast.success("Track removed from favorites");
+        toast.success("Eliminado de favoritos");
+        setHiddenTracks((prev) => [...prev, id]); 
       } else {
         toast.error(data.message || "Error removing from favorites");
       }
@@ -67,13 +72,27 @@ const Results: React.FC<ResultsProps> = ({ tracks, onTrackSelect, title }) => {
       toast.error("Error removing from favorites");
     }
   };
-
+  useEffect(() => {
+    if (tracks.length === 0) {
+      setHideGrill(false); 
+    } else {
+      setHideGrill(true); 
+    }
+  }, [tracks]);
   return (
     <div className="results">
       {title && <h2 className="results__title">{title}</h2>}
-      <div className="results__container">
-        {tracks.map((track) => (
-          <div key={track.id} className="results__item">
+      <div className={hideGrill ? "results__container" : ""}>
+        {tracks.length===0?(
+          <div className="favorites__empty">
+          <p className="favorites__empty__text">Aún no has añadido favoritos 😢</p>
+          <Link className="favorites__empty__home" to={"/"}>Ir al inicio »</Link>
+          </div>) : (
+          tracks.map((track) => (
+          <div
+            key={track.id}
+            className={`results__item ${hiddenTracks.includes(track.id) ? "hidden" : ""}`}
+          >
             <img
               className="results__img"
               src={track.album_cover}
@@ -88,8 +107,8 @@ const Results: React.FC<ResultsProps> = ({ tracks, onTrackSelect, title }) => {
                 })
               }
             />
-            <strong className="results__track-title">{track.title}</strong>
-            <span className="results__track-artist">{track.artist}</span>
+            <strong className="results__item-title">{track.title}</strong>
+            <span className="results__item-artist">{track.artist}</span>
 
             {user && (
               <div className="results__menu">
@@ -98,14 +117,14 @@ const Results: React.FC<ResultsProps> = ({ tracks, onTrackSelect, title }) => {
                 </span>
                 {menuTrackId === track.id && (
                   <div className="results__menu-options">
-                    <button onClick={() => handleAddFavorite(track)}>Add to Favorites</button>
-                    <button onClick={() => handleRemoveFavorite(track.id)}>Remove from Favorites</button>
+                    <button onClick={() => handleAddFavorite(track)}>Agregar Favorito</button>
+                    <button onClick={() => handleRemoveFavorite(track.id)}>Eliminar Favorito</button>
                   </div>
                 )}
               </div>
             )}
           </div>
-        ))}
+        )))}
       </div>
     </div>
   );

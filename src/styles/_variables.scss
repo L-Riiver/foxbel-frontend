@@ -1,7 +1,9 @@
 
 // Colors
-$primary-color: #662323;
-$secondary-color: #E86060;
+$primary-color: #00113c;
+$secondary-color: #07287a;
+
+$tertiary-color: #E86060;
 $background-color: #f1f1f1;
 $text-color: #333;
 $gray-color: #999;
@@ -37,3 +39,7 @@ $font-family-heading: 'Poppins', sans-serif;
 
 // Transition durations
 $transition-speed: 0.3s;
+
+@media (prefers-color-scheme: light) {
+  //light mode
+}

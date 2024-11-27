@@ -43,6 +43,9 @@ button:focus-visible {
   flex-direction: column;
   align-items: center;
   position: relative;
+  @media (min-width:1300px) {
+    padding-left: 270px;
+  }
 
   div{
     max-width: 100vw;
@@ -51,20 +54,36 @@ button:focus-visible {
 
 .required_symbol{
   color: $secondary-color;
+  font-weight: bold;
   cursor: pointer;
 }
+.search-results{
+  width: clamp(250px, 100%, 1025px);
+  padding-block: 5rem 8rem;
+}
+.favorites{
+  padding: 1rem;
+  padding-block: 5rem 8rem;
+  width: clamp(250px, 100%, 1025px);
+}
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
+// buttons
+.button__login, .button__register, .button__logout, .button__file {
+  padding: 0.6rem 1rem;
+  background-color: $secondary-color;
+  color: $background-color;
+  border: 1px solid $black-color;
+  border-radius: .3rem;
+  font-size: $font-size-small;
+  outline: 2px solid transparent;
+  width: fit-content;
+  margin: auto;
 
-  a:hover {
-    color: $secondary-color;  // Cambiando el color al usar light mode
-  }
-
-  button {
-    background-color: $background-color;  // Usando el color de fondo para el modo claro
+  cursor: pointer;
+  transition: outline-color .2s ease;
+  
+  &:hover {
+    outline: 2px solid $background-color;
+    border-color: transparent ;
   }
 }
